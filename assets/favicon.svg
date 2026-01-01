@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>favicon</title>
+    <defs>
+        <path d="M0,0 L100,0 L100,100 L0,100 L0,0 Z" id="path-1"></path>
+    </defs>
+    <g id="favicon" stroke="none" fill="none" xlink:href="#path-1" fill-rule="evenodd" stroke-width="1">
+        <g id="klatser" transform="translate(10, 21)" fill="#414141" fill-rule="nonzero">
+            <path d="M18.4525689,57.9902101 L37.6241953,0.0293695671 L19.1862019,0 L0,58 L18.4525689,57.9902101 Z M43.1823151,37.1867668 L80,0.0734239176 L54.0021863,0.00978985568 L43.0074092,11.0772217 C35.9625896,18.3559794 36.0306085,30.049962 43.1823151,37.1867668 Z M63.8309243,37.172082 L43.2454755,37.2455059 L63.7726224,57.931471 L63.8309243,37.172082 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>
