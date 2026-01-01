@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -8,7 +9,7 @@
     <style>
         @font-face {
             font-family: 'Sfizia';
-            src: url('assets/sfizia-regular.woff2') format('woff2'); /* Pas pad aan indien nodig */
+            src: url('assets/fonts/sfizia-regularitalic-webfont.woff2') format('woff2'); /* Pas pad aan indien nodig */
             font-weight: normal;
         }
         :root {
@@ -43,11 +44,27 @@
             font-size: 1.2rem;
             max-width: 600px;
         }
+
+        .address {
+            font-family: monospace;
+            color: #666;
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
-    <img src="assets/Klatsers logo.png" alt="Klatsers Logo" class="logo">
+    <img src="assets/logo-avatar.svg" alt="Klatsers Logo" class="logo">
     <h1>Dee heet get Klatsers.</h1>
     <p>De eerste echte Maastrichtse crypto-munteenheid. Momenteel in ontwikkeling door de knapste koppen uit de regio.</p>
+        <div class="address">
+            Contract: 0x2673bd568A0c97198D43899d878FA4f7C843D230
+        </div>
+        <p><a href="https://sepolia.etherscan.io/address/0x2673bd568A0c97198D43899d878FA4f7C843D230" target="_blank">Bekijk transacties op Etherscan</a></p>
 </body>
 </html>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="168px" height="121px" viewBox="0 0 168 121" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo-avatar</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-avatar" transform="translate(0, -26)" fill="#414141" fill-rule="nonzero">
+            <g id="klatser" transform="translate(0, 26)">
+                <path d="M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
