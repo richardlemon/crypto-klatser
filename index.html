@@ -1,70 +1,135 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto Klatsers | Dee heet get Klatsers</title>
-    <link rel="stylesheet" href="https://use.typekit.net/YOUR_ID.css">
+    <link rel="stylesheet" href="https://use.typekit.net/scs2ihk.css">
     <style>
         @font-face {
             font-family: 'Sfizia';
-            src: url('assets/fonts/sfizia-regularitalic-webfont.woff2') format('woff2'); /* Pas pad aan indien nodig */
+            src: url('assets/fonts/sfizia-regularitalic-webfont.woff2') format('woff2');
             font-weight: normal;
         }
         :root {
             --bg: #fcfcfc;
             --text: #171717;
             --secondary: #6f6f6f;
+            --accent: #007bff;
         }
+
+        /* Fade-in en slide-up voor de tekst */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* De Morphing animatie voor de K-vorm */
+        @keyframes klatserMorph {
+            0%, 100% { d: path("M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z"); }
+            50% { d: path("M39.5,118.5 L77.5,1.5 L41.5,1.5 L2.5,118.5 L39.5,118.5 Z M92.5,75.5 L164.5,2.5 L114.5,1.5 L91.5,21.5 C77.5,36.5 77.5,60.5 92.5,75.5 Z M131.5,78.5 L92.5,78.5 L131.5,117.5 L131.5,78.5 Z"); }
+        }
+
+        /* Subtiel zweven van het hele logo */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(1deg); }
+        }
+
         body {
             background: var(--bg);
             color: var(--text);
             font-family: "tonos", sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
             text-align: center;
+            overflow: hidden;
         }
-        .logo {
-            width: 250px;
-            margin-bottom: 50px;
+
+        .content-wrapper {
+            max-width: 600px;
+            padding: 20px;
         }
+
+        .logo-container {
+            width: 140px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: fadeInUp 1.2s ease-out forwards, float 6s ease-in-out infinite 1.2s;
+            animation-delay: 0.2s;
+        }
+
+        #Shape {
+            fill: #414141;
+            animation: klatserMorph 8s ease-in-out infinite;
+        }
+
         h1 {
             font-family: 'Sfizia', serif;
             font-size: 3.5rem;
             margin: 0;
             font-weight: normal;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.6s;
+            color: #414141;
         }
+
         p {
             color: var(--secondary);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.1rem;
+            line-height: 1.3;
+            max-width: 500px;
+            margin: 15px auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.9s;
         }
 
         .address {
             font-family: monospace;
-            color: #666;
-            margin-top: 20px;
-            font-size: 0.9em;
-        }
-        a {
-            color: #007bff;
-            text-decoration: none;
+            color: #999;
+            margin-top: 40px;
             font-size: 0.8em;
+            letter-spacing: -0.5px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 1.2s;
         }
+
+        .etherscan {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.75em;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 1.4s;
+            transition: color 0.3s;
+        }
+
+        .etherscan:hover { color: #000; }
     </style>
 </head>
 <body>
-    <img src="assets/logo-avatar.svg" alt="Klatsers Logo" class="logo">
-    <h1>Dee heet get Klatsers.</h1>
-    <p>De eerste echte Maastrichtse crypto-munteenheid. Momenteel in ontwikkeling door de knapste koppen uit de regio.</p>
-        <div class="address">
-            Contract: 0x2673bd568A0c97198D43899d878FA4f7C843D230
+
+    <div class="content-wrapper">
+        <div class="logo-container">
+            <svg viewBox="0 0 168 121" xmlns="http://www.w3.org/2000/svg">
+                <path id="Shape" d="M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z"></path>
+            </svg>
         </div>
-        <p><a href="https://sepolia.etherscan.io/address/0x2673bd568A0c97198D43899d878FA4f7C843D230" target="_blank">Bekijk transacties op Etherscan</a></p>
+
+        <h1>Dee heet get Klatsers.</h1>
+        <p>De eerste echte Maastrichtse crypto-munteenheid. Momenteel in ontwikkeling door de knapste koppen uit de regio.</p>
+        
+        <div class="address">Contract: 0x2673bd568A0c97198D43899d878FA4f7C843D230</div>
+        <a href="https://sepolia.etherscan.io/address/0x2673bd568A0c97198D43899d878FA4f7C843D230" class="etherscan" target="_blank">Bekijk transacties op Etherscan</a>
+    </div>
+
 </body>
 </html>
