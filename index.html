@@ -17,6 +17,7 @@
             --text: #171717;
             --secondary: #6f6f6f;
             --accent: #007bff;
+            --logo-color: #414141;
         }
 
         /* Fade-in en slide-up voor de tekst */
@@ -25,13 +26,21 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* De Morphing animatie voor de K-vorm */
-        @keyframes klatserMorph {
-            0%, 100% { d: path("M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z"); }
-            50% { d: path("M39.5,118.5 L77.5,1.5 L41.5,1.5 L2.5,118.5 L39.5,118.5 Z M92.5,75.5 L164.5,2.5 L114.5,1.5 L91.5,21.5 C77.5,36.5 77.5,60.5 92.5,75.5 Z M131.5,78.5 L92.5,78.5 L131.5,117.5 L131.5,78.5 Z"); }
+        /* De Morphing animatie inclusief krachtig ademen (schaal + gloed) */
+        @keyframes klatserBreathe {
+            0%, 100% { 
+                d: path("M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z");
+                transform: scale(1);
+                filter: drop-shadow(0 0 0px rgba(65, 65, 65, 0));
+            }
+            50% { 
+                d: path("M39.5,118.5 L77.5,1.5 L41.5,1.5 L2.5,118.5 L39.5,118.5 Z M92.5,75.5 L164.5,2.5 L114.5,1.5 L91.5,21.5 C77.5,36.5 77.5,60.5 92.5,75.5 Z M131.5,78.5 L92.5,78.5 L131.5,117.5 L131.5,78.5 Z");
+                transform: scale(1.12); /* Krachtigere vergroting van 12% */
+                filter: drop-shadow(0 0 15px rgba(65, 65, 65, 0.3)); /* Ademt een zachte gloed uit */
+            }
         }
 
-        /* Subtiel zweven van het hele logo */
+        /* Subtiel zweven van het hele logo-container */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(1deg); }
@@ -64,8 +73,10 @@
         }
 
         #Shape {
-            fill: #414141;
-            animation: klatserMorph 8s ease-in-out infinite;
+            fill: var(--logo-color);
+            transform-origin: center;
+            /* De animatie duurt 4 seconden voor een rustige maar aanwezige hartslag */
+            animation: klatserBreathe 4s ease-in-out infinite;
         }
 
         h1 {
@@ -76,7 +87,7 @@
             opacity: 0;
             animation: fadeInUp 1s ease-out forwards;
             animation-delay: 0.6s;
-            color: #414141;
+            color: var(--logo-color);
         }
 
         p {
@@ -120,7 +131,7 @@
 
     <div class="content-wrapper">
         <div class="logo-container">
-            <svg viewBox="0 0 168 121" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 168 121" xmlns="http://www.w3.org/2000/svg" style="overflow: visible;">
                 <path id="Shape" d="M38.5658691,120.179711 L78.6345682,0.0608658959 L40.0991619,0 L0,120.2 L38.5658691,120.179711 Z M90.2510385,77.0663685 L167.2,0.15216474 L112.864569,0.020288632 L89.8854852,22.9565871 C75.1618122,38.0411849 75.3039718,62.2759558 90.2510385,77.0663685 Z M133.406632,77.0359355 L90.3830438,77.1881003 L133.284781,120.05798 L133.406632,77.0359355 Z"></path>
             </svg>
         </div>
