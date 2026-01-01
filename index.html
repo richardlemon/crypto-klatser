@@ -45,7 +45,7 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(1deg); }
         }
-        
+
 
         body {
             background: var(--bg);
@@ -137,12 +137,28 @@
             </svg>
         </div>
 
-        <h1>Dee heet get Klatsers.</h1>
+        <h1 id="slogan">Dee heet get Klatsers.</h1>
         <p>De eerste echte Maastrichtse crypto-munteenheid. Momenteel in ontwikkeling door de knapste koppen uit de regio.</p>
         
         <div class="address">Contract: 0x2673bd568A0c97198D43899d878FA4f7C843D230</div>
         <a href="https://sepolia.etherscan.io/address/0x2673bd568A0c97198D43899d878FA4f7C843D230" class="etherscan" target="_blank">Bekijk transacties op Etherscan</a>
     </div>
+<script>
+    const slogans = [
+        "Dee heet get Klatsers.",
+        "Dees geit klatsje!",
+        "Veur de echte Mestreechteneer.",
+        "Kiek ‘m goon!",
+        "Beter es ‘ne vlaoj.",
+        "Klatse mèt die hap.",
+        "Mestreechs Goud."
+    ];
 
+    // Kiest een willekeurige slogan uit de lijst
+    const randomSlogan = slogans[Math.floor(Math.random() * slogans.length)];
+    
+    // Zet de gekozen slogan in de H1
+    document.getElementById('slogan').innerText = randomSlogan;
+</script>
 </body>
 </html>
