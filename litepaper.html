@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lite Paper | Crypto Klatsers (KLT)</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="https://use.typekit.net/scs2ihk.css">
+    <style>
+        @font-face {
+            font-family: 'Sfizia';
+            src: url('assets/fonts/sfizia-regularitalic-webfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        :root {
+            --bg: #F5F5DC;          
+            --text: #171717;        
+            --secondary: #4A5D4E;   
+            --accent: #9EC89C;      
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "tonos", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .paper-container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 60px;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Sfizia', serif;
+            font-style: normal;
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Sfizia', serif;
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-top: 40px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        p, li {
+            font-size: 1.1rem;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .comparison-box {
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .roadmap-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-item {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .roadmap-item strong {
+            display: block;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 600px) {
+            .paper-container { padding: 30px; }
+            h1 { font-size: 2.2rem; }
+        }
+        .faq-section { margin-top: 50px; }
+        
+        .faq-item {
+            border-bottom: 1px solid rgba(74, 93, 78, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 20px 0;
+            font-size: 1.2rem;
+            font-family: 'Sfizia', serif;
+            color: var(--secondary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .faq-item.active .faq-question::after { content: '-'; }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .faq-item.active .faq-answer { max-height: 500px; }
+    </style>
+</head>
+<body>
+
+    <div class="paper-container">
+        <h1>Lite Paper v1.0</h1>
+        <div class="subtitle">Dee heet get Klatsers</div>
+
+        <section>
+            <h2>1. De Visie</h2>
+            <p>Crypto Klatsers is niet zomaar een token; het is een digitaal bewijs van Maastrichtse trots. Ontstaan uit liefde voor de stad, biedt de KLT een modern alternatief voor verouderde lokale betaalsystemen. Wij brengen de "menselijke maat" terug door de gezelligheid van het Vrijthof te koppelen aan de veiligheid van de blockchain.</p>
+        </section>
+
+        <section>
+            <h2>2. Het Probleem: De PreuveneCard Paradox</h2>
+            <p>Sinds 2017 gebruikt Maastricht de PreuveneCard. Hoewel digitaal, introduceerde dit nieuwe barrières:</p>
+            <ul>
+                <li><strong>Tijdelijkheid:</strong> Tegoed vervalt na slechts vier dagen.</li>
+                <li><strong>Kosten:</strong> Verplichte donatie van één 'lap' bij elke restitutie.</li>
+                <li><strong>Verspilling:</strong> Jaarlijks duizenden nieuwe plastic kaarten.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. De Oplossing: KLT</h2>
+            <div class="comparison-box">
+                <strong>De Klatser-Evolutie:</strong> In tegenstelling tot de kaart, blijven Klatsers voor altijd in je wallet. Wat je dit jaar niet opmaakt, gebruik je volgend jaar weer, of geef je uit bij de lokale horeca op de Markt.
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Tokenomics</h2>
+            <p>Een schaalbaar model met een Maastrichts hart:</p>
+            <ul>
+                <li><strong>Total Supply:</strong> 30.000.000 KLT.</li>
+                <li><strong>The Founders Batch:</strong> 122.000 KLT gereserveerd voor de inwoners (één per inwoner).</li>
+                <li><strong>De "Pils-Index":</strong> Liquiditeit gericht op stabiele prijzen voor consumpties in de stad.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Roadmap: De weg naar het Vrijthof</h2>
+            <div class="roadmap-list">
+                <div class="roadmap-item">
+                    <strong>Fase 1: Genesis (Q1 2026)</strong>
+                    Lancering platform en distributie van de Founders Batch.
+                </div>
+                <div class="roadmap-item">
+                    <strong>Fase 2: De Pilot (Q2 2026)</strong>
+                    Eerste live betaaltesten in geselecteerde Maastrichtse cafés.
+                </div>
+                <div class="roadmap-item">
+                    <strong>Fase 3: Het Preuvenemint (Q3 2026)</strong>
+                    Positionering als hét superieure, milieuvriendelijke alternatief voor de PreuveneCard.
+                </div>
+            </div>
+        </section>
+        <section class="faq-section">
+            <h2>Veelgestelde Vragen (FAQ)</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">Hoe duur is een Klatser en wie bepaalt de prijs?</button>
+                <div class="faq-answer">
+                    <p>De Klatser is gekoppeld aan de "Pils-Index". We streven naar een stabiele waarde waarbij 1 KLT gelijkstaat aan één consumptie (ca. €3,50). Tijdens evenementen hanteren deelnemende horecagelegenheden een vaste inwisselwaarde, zodat je op zondag hetzelfde betaalt als op donderdag.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Is de Klatser net zo onvoorspelbaar als de Bitcoin?</button>
+                <div class="faq-answer">
+                    <p>Nee. De Klatser is bedoeld als lokaal betaalmiddel, niet als speculatie-object. Door een grote reserve aan te houden (de Growth Reserve van 30 miljoen tokens), kunnen we de prijs stabiel houden voor dagelijks gebruik in de stad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Wat als ik Klatsers over heb na het Preuvenemint?</p></button>
+                <div class="faq-answer">
+                    <p>Je Klatsers blijven gewoon in je app staan en verlopen nooit. Je hoeft niet in de rij te staan voor restitutie en er worden geen administratiekosten ingehouden. Je kunt ze volgend jaar weer gebruiken of morgen al uitgeven bij deelnemende cafés in de binnenstad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Hoe kom ik aan Klatsers als ik geen crypto-expert ben?</button>
+                <div class="faq-answer">
+                    <p>Heel simpel. Naast online aanschaf via de website, richten we tijdens grote evenementen 'Klatser-punten' in. Hier kun je met je pinpas of contant geld je digitale wallet laten vullen door onze medewerkers.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Hoe zet ik een Klatser-wallet op mijn telefoon?</button>
+                <div class="faq-answer">
+                    <p>Het klinkt ingewikkeld, maar het is net zo simpel als het installeren van de Instagram- of Rabo-app:
+                        <br>1. Download een gratis wallet-app zoals <strong>MetaMask</strong> of <strong>Trust Wallet</strong> in de App Store of Play Store.
+                        <br>2. Volg de stappen in de app om een nieuw account aan te maken.
+                        <br>3. <strong>Belangrijk:</strong> Je krijgt een reeks van 12 woorden (je 'Seed Phrase'). Schrijf deze op een papiertje en bewaar dit goed. Dit is de enige manier om bij je Klatsers te komen als je je telefoon verliest!
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Kan ik hulp krijgen bij het installeren?</button>
+                <div class="faq-answer">
+                    <p>Zeker weten! Tijdens lokale evenementen en op onze Klatser-punten staan we klaar om je persoonlijk te helpen met het instellen van je wallet. We zorgen dat je binnen 2 minuten klaar bent om je eerste pilske digitaal af te rekenen.</p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            © 2026 Crypto Klatsers - Maastricht - Contract: 0x26...D230
+        </footer>
+    </div>
+<script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
