@@ -76,7 +76,6 @@
             color: var(--secondary);
         }
 
-        /* De Magic Button */
         .add-to-wallet-btn {
             background: var(--metamask);
             color: white;
@@ -133,17 +132,28 @@
             background: var(--secondary);
             color: white;
             border: none;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 0.75rem;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: bold;
             cursor: pointer;
             width: 100%;
+            margin-top: 5px;
         }
 
         .footer {
             margin-top: 40px;
             font-size: 0.8rem;
             opacity: 0.5;
+            text-align: center;
+        }
+
+        /* Nieuwe stijl voor Stap 4 */
+        .my-address-box {
+            background: #eef2ef;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 10px;
             text-align: center;
         }
     </style>
@@ -177,6 +187,16 @@
             </button>
         </div>
 
+        <div class="step" style="border-left-color: var(--secondary);">
+            <h3>4. Ontvang je 1000 KLT</h3>
+            <p>De QR-scanner werkt soms niet. Kopieer je eigen adres hieronder en stuur het naar mij (bijv. via WhatsApp) voor de airdrop:</p>
+            <div class="my-address-box">
+                <button class="copy-btn" id="copyMyAddrBtn" onclick="copyUserAddress()">
+                    Kopieer MIJN Wallet Adres
+                </button>
+            </div>
+        </div>
+
         <div class="step" style="border-left-color: #ccc; opacity: 0.8;">
             <h3>Handmatig toevoegen</h3>
             <div class="contract-box">
@@ -195,12 +215,10 @@
     const tokenAddress = '0x2673bd568A0c97198D43899d878FA4f7C843D230';
     const tokenSymbol = 'KLT';
     const tokenDecimals = 18;
-    const tokenImage = 'https://klatsers.nl/assets/KLT-icon.svg';
+    const tokenImage = 'https://klatsers.nl/assets/logo.png'; 
 
-    // 1) Basis detectie
     if (typeof window.ethereum === 'undefined') {
-      // iOS tip + deeplink
-      const mmLink = 'https://metamask.app.link/dapp/klatsers.nl/airdrop.html'; // pas aan naar jouw exacte pad
+      const mmLink = 'https://metamask.app.link/dapp/klatsers.nl/airdrop.html'; 
       alert(
         'Geen wallet gedetecteerd.\n\n' +
         'Open deze pagina in de MetaMask app browser op je iPhone.\n' +
@@ -209,13 +227,6 @@
       return;
     }
 
-    // 2) Request-functie aanwezig?
-    if (typeof window.ethereum.request !== 'function') {
-      alert('Wallet gedetecteerd, maar ethereum.request ontbreekt.');
-      return;
-    }
-
-    // 3) Probeer token toe te voegen
     try {
       const wasAdded = await window.ethereum.request({
         method: 'wallet_watchAsset',
@@ -232,38 +243,44 @@
 
       if (wasAdded) {
         alert('✅ KLT is toegevoegd aan MetaMask!');
-      } else {
-        // Sommige wallets geven false terug als de gebruiker "Cancel" drukt
-        alert('ℹ️ Toevoegen geannuleerd in MetaMask.');
       }
     } catch (error) {
-      // Meest voorkomende: user rejected request
-      const msg = (error && (error.message || error.toString())) || 'Onbekende fout';
       console.error('wallet_watchAsset error:', error);
-
-      if (msg.toLowerCase().includes('user rejected') || (error && error.code === 4001)) {
-        alert('ℹ️ Je hebt het verzoek geweigerd in MetaMask.');
-      } else {
-        alert('❌ Kon KLT niet toevoegen: ' + msg);
-      }
+      alert('❌ Kon KLT niet toevoegen. Zorg dat je in de MetaMask browser zit.');
     }
   }
 
-  // Clipboard met fallback voor iOS/Safari
+  // Nieuwe functie om het eigen adres van de gebruiker te kopiëren
+  async function copyUserAddress() {
+    if (typeof window.ethereum !== 'undefined') {
+        try {
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const userAddr = accounts[0];
+            
+            fallbackCopy(userAddr, () => {
+                const btn = document.getElementById('copyMyAddrBtn');
+                btn.innerText = '✅ Jouw adres is gekopieerd!';
+                btn.style.background = '#9EC89C';
+                setTimeout(() => { 
+                    btn.innerText = 'Kopieer MIJN Wallet Adres'; 
+                    btn.style.background = '#4A5D4E';
+                }, 3000);
+            });
+        } catch (err) {
+            alert('Kon geen verbinding maken met je wallet. Zorg dat je in de MetaMask browser zit.');
+        }
+    } else {
+        alert('Open deze pagina in de MetaMask app om je adres te kunnen kopiëren.');
+    }
+  }
+
   function copyAddress() {
     const addr = document.getElementById('contractAddr').innerText.trim();
-    const btn = document.querySelector('.copy-btn');
-
-    function setCopied() {
+    const btn = event.target;
+    fallbackCopy(addr, () => {
       btn.innerText = 'Gekopieerd!';
       setTimeout(() => { btn.innerText = 'Kopieer Contract Adres'; }, 2000);
-    }
-
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
-      navigator.clipboard.writeText(addr).then(setCopied).catch(() => fallbackCopy(addr, setCopied));
-    } else {
-      fallbackCopy(addr, setCopied);
-    }
+    });
   }
 
   function fallbackCopy(text, onSuccess) {
@@ -278,7 +295,7 @@
     const ok = document.execCommand('copy');
     document.body.removeChild(ta);
     if (ok) onSuccess();
-    else alert('❌ Kopiëren mislukt. Kopieer handmatig: ' + text);
+    else alert('❌ Kopiëren mislukt. Kopieer handmatig.');
   }
 </script>
 </body>
