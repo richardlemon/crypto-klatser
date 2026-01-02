@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KLT Airdrop | Claim diene Klatser</title>
+    <link rel="stylesheet" href="https://use.typekit.net/scs2ihk.css">
+    <style>
+        :root {
+            --bg: #F5F5DC;          /* Matcha Cream */
+            --text: #171717;        
+            --secondary: #4A5D4E;   /* Forest Green */
+            --accent: #9EC89C;      /* Matcha Money Green */
+            --metamask: #F6851B;    /* MetaMask Orange */
+        }
+
+        @font-face {
+            font-family: 'Sfizia';
+            src: url('assets/fonts/sfizia-regularitalic-webfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: "tonos", sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-family: 'Sfizia', serif;
+            color: var(--secondary);
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            margin-top: 30px;
+            padding-left: 20px;
+            border-left: 3px solid var(--accent);
+        }
+
+        .step h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1rem;
+            color: var(--secondary);
+        }
+
+        /* De Magic Button */
+        .add-to-wallet-btn {
+            background: var(--metamask);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 15px;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 4px 15px rgba(246, 133, 27, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .add-to-wallet-btn:hover {
+            transform: scale(1.02);
+            background: #e27613;
+        }
+
+        .btn-apple {
+            display: inline-flex;
+            background: #000;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .contract-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            margin-top: 15px;
+        }
+
+        code {
+            display: block;
+            font-family: monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .copy-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            opacity: 0.5;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="badge">Genesis Airdrop - Wijck</span>
+        <h1>Claim diene Klatser</h1>
+        <p>Volg deze stappen op je iPhone om je eerste 1000 KLT te ontvangen.</p>
+
+        <div class="step">
+            <h3>1. Download MetaMask</h3>
+            <p>Maak een wallet aan en bewaar je 12 woorden offline.</p>
+            <a href="https://apps.apple.com/nl/app/metamask-blockchain-wallet/id1438144202" class="btn-apple" target="_blank">
+                 Download in de App Store
+            </a>
+        </div>
+
+        <div class="step">
+            <h3>2. Activeer Sepolia</h3>
+            <p>Tik op het netwerk-icoon bovenin. Zet <strong>"Show test networks"</strong> aan en kies <strong>Sepolia</strong>.</p>
+        </div>
+
+        <div class="step">
+            <h3>3. De Magic Button</h3>
+            <p>Open deze pagina in de <strong>MetaMask Browser</strong> en klik hieronder om KLT direct met logo te importeren:</p>
+            
+            <button class="add-to-wallet-btn" onclick="addKlatserToMetaMask()">
+                🦊 Voeg KLT toe aan Wallet
+            </button>
+        </div>
+
+        <div class="step" style="border-left-color: #ccc; opacity: 0.8;">
+            <h3>Handmatig toevoegen</h3>
+            <div class="contract-box">
+                <code id="contractAddr">0x2673bd568A0c97198D43899d878FA4f7C843D230</code>
+                <button class="copy-btn" onclick="copyAddress()">Kopieer Contract Adres</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © 2026 Crypto Klatsers - Geboren in Wijck
+    </div>
+
+    <script>
+        async function addKlatserToMetaMask() {
+            const tokenAddress = '0x2673bd568A0c97198D43899d878FA4f7C843D230';
+            const tokenSymbol = 'KLT';
+            const tokenDecimals = 18;
+            const tokenImage = 'https://klatsers.nl/assets/logo.png'; 
+
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({
+                        method: 'wallet_watchAsset',
+                        params: {
+                            type: 'ERC20',
+                            options: {
+                                address: tokenAddress,
+                                symbol: tokenSymbol,
+                                decimals: tokenDecimals,
+                                image: tokenImage,
+                            },
+                        },
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            } else {
+                alert('Open deze pagina in de browser van de MetaMask app op je iPhone!');
+            }
+        }
+
+        function copyAddress() {
+            const addr = document.getElementById('contractAddr').innerText;
+            navigator.clipboard.writeText(addr).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerText = 'Gekopieerd!';
+                setTimeout(() => { btn.innerText = 'Kopieer Contract Adres'; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
