@@ -191,42 +191,95 @@
     </div>
 
     <script>
-        async function addKlatserToMetaMask() {
-            const tokenAddress = '0x2673bd568A0c97198D43899d878FA4f7C843D230';
-            const tokenSymbol = 'KLT';
-            const tokenDecimals = 18;
-            const tokenImage = 'https://klatsers.nl/assets/logo.png'; 
+  async function addKlatserToMetaMask() {
+    const tokenAddress = '0x2673bd568A0c97198D43899d878FA4f7C843D230';
+    const tokenSymbol = 'KLT';
+    const tokenDecimals = 18;
+    const tokenImage = 'https://klatsers.nl/assets/KLT-icon.svg';
 
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    await window.ethereum.request({
-                        method: 'wallet_watchAsset',
-                        params: {
-                            type: 'ERC20',
-                            options: {
-                                address: tokenAddress,
-                                symbol: tokenSymbol,
-                                decimals: tokenDecimals,
-                                image: tokenImage,
-                            },
-                        },
-                    });
-                } catch (error) {
-                    console.error(error);
-                }
-            } else {
-                alert('Open deze pagina in de browser van de MetaMask app op je iPhone!');
-            }
-        }
+    // 1) Basis detectie
+    if (typeof window.ethereum === 'undefined') {
+      // iOS tip + deeplink
+      const mmLink = 'https://metamask.app.link/dapp/klatsers.nl'; // pas aan naar jouw exacte pad
+      alert(
+        'Geen wallet gedetecteerd.\n\n' +
+        'Open deze pagina in de MetaMask app browser op je iPhone.\n' +
+        'Tip: gebruik deze link om te openen in MetaMask:\n' + mmLink
+      );
+      return;
+    }
 
-        function copyAddress() {
-            const addr = document.getElementById('contractAddr').innerText;
-            navigator.clipboard.writeText(addr).then(() => {
-                const btn = document.querySelector('.copy-btn');
-                btn.innerText = 'Gekopieerd!';
-                setTimeout(() => { btn.innerText = 'Kopieer Contract Adres'; }, 2000);
-            });
-        }
-    </script>
+    // 2) Request-functie aanwezig?
+    if (typeof window.ethereum.request !== 'function') {
+      alert('Wallet gedetecteerd, maar ethereum.request ontbreekt.');
+      return;
+    }
+
+    // 3) Probeer token toe te voegen
+    try {
+      const wasAdded = await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20',
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        alert('✅ KLT is toegevoegd aan MetaMask!');
+      } else {
+        // Sommige wallets geven false terug als de gebruiker "Cancel" drukt
+        alert('ℹ️ Toevoegen geannuleerd in MetaMask.');
+      }
+    } catch (error) {
+      // Meest voorkomende: user rejected request
+      const msg = (error && (error.message || error.toString())) || 'Onbekende fout';
+      console.error('wallet_watchAsset error:', error);
+
+      if (msg.toLowerCase().includes('user rejected') || (error && error.code === 4001)) {
+        alert('ℹ️ Je hebt het verzoek geweigerd in MetaMask.');
+      } else {
+        alert('❌ Kon KLT niet toevoegen: ' + msg);
+      }
+    }
+  }
+
+  // Clipboard met fallback voor iOS/Safari
+  function copyAddress() {
+    const addr = document.getElementById('contractAddr').innerText.trim();
+    const btn = document.querySelector('.copy-btn');
+
+    function setCopied() {
+      btn.innerText = 'Gekopieerd!';
+      setTimeout(() => { btn.innerText = 'Kopieer Contract Adres'; }, 2000);
+    }
+
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(addr).then(setCopied).catch(() => fallbackCopy(addr, setCopied));
+    } else {
+      fallbackCopy(addr, setCopied);
+    }
+  }
+
+  function fallbackCopy(text, onSuccess) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'absolute';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (ok) onSuccess();
+    else alert('❌ Kopiëren mislukt. Kopieer handmatig: ' + text);
+  }
+</script>
 </body>
 </html>
